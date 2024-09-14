@@ -1,65 +1,69 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-
 .navbar {
-    width: 100%; 
-    position: fixed; 
-    top: 0; 
-    left: 0; 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #7ef1da;
-    padding: 10px 20px;
-    font-family: 'Arial', sans-serif;
-    z-index: 1000; 
-}
-
-.navbar-logo {
-    height: 50px; 
-}
-
-.navbar-menu {
-    list-style-type: none;
+    padding: 15px 30px;
+    background-color: hwb(183 26% 34%); 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+    color: white;
+  }
+  
+  .nav-links {
+    list-style: none;
     display: flex;
-    gap: 20px;
-}
-
-.navbar-menu li {
-    display: inline;
-}
-
-.navbar-menu a {
-    color: #fff;
+    gap: 25px;
+  }
+  
+  .nav-links li {
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .nav-links a {
     text-decoration: none;
-    font-size: 18px;
-    padding: 8px 12px;
-    transition: background-color 0.3s ease;
-}
-
-.navbar-menu a:hover {
-    background-color: #a19b9b;
-    border-radius: 5px;
-}
-
-@media (max-width: 768px) {
+    color: white;
+    transition: color 0.3s ease-in-out;
+    position: relative;
+  }
+  
+  .nav-links a:hover {
+    color: #f1f1f1; 
+  }
+  
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s ease-in-out;
+  }
+  
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+  
+  .cart-widget {
+    font-size: 1.2rem;
+    transition: transform 0.3s;
+  }
+  
+  .cart-widget:hover {
+    transform: scale(1.2); 
+  }
+  
+  @media (max-width: 768px) {
     .navbar {
-        flex-direction: column;
-        align-items: flex-start;
+      flex-direction: column;
+      gap: 10px;
     }
-
-    .navbar-menu {
-        flex-direction: column;
-        width: 100%;
-        gap: 10px;
+  
+    .nav-links {
+      flex-direction: column;
+      align-items: center;
     }
-
-    .navbar-menu a {
-        width: 100%;
-        text-align: left;
-    }
-}
+  }
+  

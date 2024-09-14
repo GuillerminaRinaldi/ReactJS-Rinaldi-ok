@@ -1,15 +1,20 @@
 import { Link } from 'react-router-dom';
+import './NavBar.css'; 
 
 const NavBar = () => {
   return (
-    <nav>
-      <ul>
-        <li><Link to="/">Todos los productos</Link></li>
+    <nav className="navbar">
+      <ul className="nav-links">
+      <li><Link to="/">Todos los productos</Link></li>
         <li><Link to="/category/1">Categoria 1</Link></li>
         <li><Link to="/category/2">Categoria 2</Link></li>
       </ul>
+      <div className="cart-widget">
+      🛒 3
+      </div>
     </nav>
   );
 };
 
 export default NavBar;
+
