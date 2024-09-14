@@ -6,6 +6,7 @@
     background-color: hwb(183 26% 34%); 
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
     color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   
   .nav-links {
