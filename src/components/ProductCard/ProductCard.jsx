@@ -9,7 +9,7 @@ const ProductCard = ({ product }) => {
       </div>
       <h3>{product.title}</h3>
       <p>{product.body.slice(0, 50)}...</p>
-      <Link to={`/product/${product.id}`} className="details-button">View Details</Link>
+      <Link to={`/product/${product.id}`} className="details-button">Ver en detalle</Link>
     </div>
   );
 };
