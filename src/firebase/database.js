@@ -1,9 +1,17 @@
-import { getFirestore, collection, getDocs } from "firebase/firestore";
-import { app } from './config'
+import { db } from './config';
+import { collection, getDocs, getDoc, doc } from 'firebase/firestore';
 
-const db = getFirestore(app);
+export const getProducts = async () => {
+  const productsCollection = collection(db, 'products');
+  const productSnapshot = await getDocs(productsCollection);
+  return productSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+};
 
-const querySnapshot = await getDocs(collection(db, "users"));
-querySnapshot.forEach((doc) => {
-  console.log(`${doc.id} => ${doc.data()}`);
-});
+export const getProductById = async (id) => {
+  const productRef = doc(db, 'products', id);
+  const productSnap = await getDoc(productRef);
+  if (productSnap.exists()) {
+    return { id: productSnap.id, ...productSnap.data() };
+  }
+  return null;
+};
