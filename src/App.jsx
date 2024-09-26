@@ -8,7 +8,6 @@ function App() {
   return (
     <div>
       <NavBar />
-      <CartWidget />
       <Routes>
         <Route path="/" element={<ItemListContainer />} />
         <Route path="/category/:category" element={<ItemListContainer />} />
