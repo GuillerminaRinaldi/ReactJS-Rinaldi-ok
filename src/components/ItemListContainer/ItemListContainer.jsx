@@ -1,25 +1,42 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { getProducts, getProductsByCategory } from '../../api/api';
-import ProductCard from '../ProductCard/ProductCard';
-import './ItemListContainer.css'; 
+import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { getProducts } from '../../firebase/database';
+import './ItemListContainer.css';
 
 const ItemListContainer = () => {
-  const { category } = useParams();
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const products = category ? await getProductsByCategory(category) : await getProducts();
-      setProducts(products);
+    const fetchProducts = async () => {
+      try {
+        const productList = await getProducts();
+        setProducts(productList);
+      } catch (error) {
+        console.error("Error al obtener los productos", error);
+      } finally {
+        setLoading(false);
+      }
     };
-    fetchData();
-  }, [category]);
+
+    fetchProducts();
+  }, []);
+
+  if (loading) {
+    return <p>Cargando productos...</p>;
+  }
 
   return (
     <div className="product-list">
       {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+        <div key={product.id} className="product-card">
+          <img src={product.imagen} alt={product.nombre} />
+          <h2>{product.nombre}</h2>
+          <p>Autor: {product.author}</p>
+          <p>Género: {product.genre}</p>
+          <p>Precio: ${product.precio}</p>
+          <Link to={`/product/${product.id}`} className="details-button">Ver Detalle</Link>
+        </div>
       ))}
     </div>
   );
