@@ -1,19 +1,18 @@
 .navbar {
   display: flex;
-  justify-content: center; 
+  justify-content: space-between; /* Espacia los elementos a los extremos */
   align-items: center;
   padding: 15px 30px;
-  background-color: hsl(195, 56%, 29%); 
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+  background-color: hsl(195, 56%, 29%);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   color: white;
-  position: relative; 
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 40px; 
+  gap: 40px;
   padding: 0;
   margin: 0;
 }
@@ -22,88 +21,53 @@
   font-size: 1rem;
   font-weight: bold;
   text-transform: uppercase;
-  position: relative; /* Necesario para el menú desplegable */
 }
 
-.nav-links a, .nav-item {
+.nav-links a {
   text-decoration: none;
   color: white;
   transition: color 0.3s ease-in-out;
-  position: relative;
-  cursor: pointer;
 }
 
-.nav-links a:hover, .nav-item:hover {
+.nav-links a:hover {
   color: #f1f1f1;
 }
 
-.nav-links a::after, .nav-item::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  background-color: white;
-  bottom: -5px;
-  left: 0;
-  transition: width 0.3s ease-in-out;
-}
-
-.nav-links a:hover::after, .nav-item:hover::after {
-  width: 100%;
+.cart-widget-container {
+  margin-left: auto; /* Mueve el carrito a la derecha */
 }
 
 .cart-widget {
   font-size: 1.2rem;
-  position: absolute;
-  right: 30px; 
-  top: 50%;
-  transform: translateY(-50%);
+  cursor: pointer;
   transition: transform 0.3s;
 }
 
 .cart-widget:hover {
-  transform: scale(1.2); 
+  transform: scale(1.1);
 }
 
-/* Estilo para el dropdown */
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: rgba(0, 123, 255, 0.9); /* Color integrado con el NavBar */
+  background-color: #f9f9f9;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
   z-index: 1;
-  border-radius: 5px;
+  text-align: center;
 }
 
 .dropdown-content a {
-  color: white;
+  color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-}
-
-.dropdown-content a:hover {
-  background-color: hsla(187, 55%, 35%, 0.9);
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .cart-widget {
-    right: 0;
-    top: 10px;
-  }
+.dropdown-content a:hover {
+  background-color: #ddd;
 }

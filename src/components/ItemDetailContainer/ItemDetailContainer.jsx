@@ -3,10 +3,10 @@ import { useParams } from 'react-router-dom';
 import { getProductById } from '../../firebase/database';
 import './ItemDetailContainer.css';
 
-const ItemDetailContainer = () => {
-  const { id } = useParams(); 
+const ItemDetailContainer = ({ addItemToCart }) => {
+  const { id } = useParams();
   const [product, setProduct] = useState(null);
-  const [quantity, setQuantity] = useState(1); 
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -22,19 +22,11 @@ const ItemDetailContainer = () => {
   }, [id]);
 
   const handleAddToCart = () => {
-  
-    console.log(`Agregando ${quantity} de ${product.nombre} al carrito`);
+    addItemToCart(product, quantity);  
   };
 
-  const increaseQuantity = () => {
-    setQuantity(quantity + 1);
-  };
-
-  const decreaseQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
+  const increaseQuantity = () => setQuantity(quantity + 1);
+  const decreaseQuantity = () => quantity > 1 && setQuantity(quantity - 1);
 
   if (!product) {
     return <p>Cargando detalles del producto...</p>;
@@ -58,3 +50,4 @@ const ItemDetailContainer = () => {
 };
 
 export default ItemDetailContainer;
+
