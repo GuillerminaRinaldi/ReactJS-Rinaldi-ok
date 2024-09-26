@@ -1,35 +1,58 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getProductById } from '../../api/api';
-import './ItemDetailContainer.css';  
+import { getProductById } from '../../firebase/database';
+import './ItemDetailContainer.css';
 
 const ItemDetailContainer = () => {
-  const { id } = useParams();
+  const { id } = useParams(); 
   const [product, setProduct] = useState(null);
-  const randomPrice = (Math.random() * 100 + 10).toFixed(2);  
+  const [quantity, setQuantity] = useState(1); 
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const productData = await getProductById(id);
-      setProduct(productData);
+      try {
+        const productData = await getProductById(id);
+        setProduct(productData);
+      } catch (error) {
+        console.error("Error al obtener el producto", error);
+      }
     };
+
     fetchProduct();
   }, [id]);
 
+  const handleAddToCart = () => {
+  
+    console.log(`Agregando ${quantity} de ${product.nombre} al carrito`);
+  };
+
+  const increaseQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
   if (!product) {
-    return <p>Cargando detalle de los productos...</p>;
+    return <p>Cargando detalles del producto...</p>;
   }
 
   return (
     <div className="product-detail">
-      <div className="detail-image">
-        <img src={`https://picsum.photos/600/400?random=${product.id}`} alt={product.title} />
+      <img src={product.imagen} alt={product.nombre} />
+      <h2>{product.nombre}</h2>
+      <p>Autor: {product.author}</p>
+      <p>Género: {product.genre}</p>
+      <p>Precio: ${product.precio}</p>
+      <div className="quantity-control">
+        <button onClick={decreaseQuantity}>-</button>
+        <span>{quantity}</span>
+        <button onClick={increaseQuantity}>+</button>
       </div>
-      <div className="detail-info">
-        <h2>{product.title}</h2>
-        <p className="detail-price">Precio: ${randomPrice}</p>
-        <p>{product.body}</p>
-      </div>
+      <button className="add-to-cart" onClick={handleAddToCart}>Agregar al carrito</button>
     </div>
   );
 };
