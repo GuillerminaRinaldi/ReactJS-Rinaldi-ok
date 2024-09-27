@@ -40,4 +40,3 @@ const NavBar = ({ totalItemsInCart }) => {
 };
 
 export default NavBar;
-
