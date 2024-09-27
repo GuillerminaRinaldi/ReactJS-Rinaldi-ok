@@ -31,6 +31,7 @@ const Cart = ({ cartItems, setCartItems }) => {
             {cartItems.map(item => (
               <li key={item.id} className="cart-item">
                 <h3>{item.nombre}</h3>
+                <p>Cantidad:</p>
                 <div className="quantity-control">
                   <button onClick={() => decreaseQuantity(item.id)}>-</button>
                   <span>{item.quantity}</span>
