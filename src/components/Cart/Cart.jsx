@@ -1,5 +1,24 @@
-const Cart = ({ cartItems }) => {
-const totalPrice = cartItems.reduce((total, item) => total + (item.precio * item.quantity), 0);
+const Cart = ({ cartItems, setCartItems }) => {
+  const totalPrice = cartItems.reduce((total, item) => total + (item.precio * item.quantity), 0);
+
+  const increaseQuantity = (id) => {
+    const updatedCartItems = cartItems.map(item => 
+      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+    );
+    setCartItems(updatedCartItems);
+  };
+
+  const decreaseQuantity = (id) => {
+    const updatedCartItems = cartItems.map(item => 
+      item.id === id && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item
+    );
+    setCartItems(updatedCartItems);
+  };
+
+  const removeItem = (id) => {
+    const updatedCartItems = cartItems.filter(item => item.id !== id);
+    setCartItems(updatedCartItems);
+  };
 
   return (
     <div>
@@ -10,10 +29,18 @@ const totalPrice = cartItems.reduce((total, item) => total + (item.precio * item
         <div>
           <ul>
             {cartItems.map(item => (
-              <li key={item.id}>
+              <li key={item.id} className="cart-item">
                 <h3>{item.nombre}</h3>
-                <p>Cantidad: {item.quantity}</p>
+                <div className="quantity-control">
+                  <button onClick={() => decreaseQuantity(item.id)}>-</button>
+                  <span>{item.quantity}</span>
+                  <button onClick={() => increaseQuantity(item.id)}>+</button>
+                </div>
                 <p>Precio total: ${item.precio * item.quantity}</p>
+
+                <button onClick={() => removeItem(item.id)} className="remove-item">
+                  🗑️
+                </button>
               </li>
             ))}
           </ul>
