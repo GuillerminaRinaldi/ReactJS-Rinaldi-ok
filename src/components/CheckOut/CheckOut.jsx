@@ -1,8 +1,8 @@
+import './CheckOut.css';
 import { useState } from 'react';
 import { createOrder } from '../../firebase/database';  
-import './CheckOut.css';
 
-const CheckOut = ({ cartItems }) => {
+const CheckOut = ({ cartItems, setCartItems }) => {
   const [formData, setFormData] = useState({
     nombre: '',
     telefono: '',
@@ -20,8 +20,8 @@ const CheckOut = ({ cartItems }) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();  
-    
+    e.preventDefault();
+
     if (!formData.nombre || !formData.telefono || !formData.email) {
       alert("Todos los campos son obligatorios.");
       return;
@@ -45,10 +45,10 @@ const CheckOut = ({ cartItems }) => {
     };
 
     try {
-      const docRef = await createOrder(order);  
-      setOrderId(docRef.id);  
-      setOrderDetails(order);  
-      alert("Compra completada con éxito. ID de la orden: " + docRef.id);
+      const docRef = await createOrder(order);
+      setOrderId(docRef.id);
+      setOrderDetails(order);
+      setCartItems([]);
     } catch (error) {
       console.error("Error al crear la orden:", error);
     }
@@ -66,18 +66,19 @@ const CheckOut = ({ cartItems }) => {
           <ul>
             {orderDetails?.items.map(item => (
               <li key={item.id}>
-                {item.nombre} - Cantidad: {item.quantity} - Precio: ${item.precio}
+                <span>{item.nombre}</span> - Cantidad: {item.quantity} - Precio: ${item.precio}
               </li>
             ))}
           </ul>
-          <p>Importe total: ${orderDetails?.total.toFixed(2)}</p>
+          <p><strong>Total: ${orderDetails?.total.toFixed(2)}</strong></p>
           <h4>Datos del comprador:</h4>
           <p>Nombre: {orderDetails?.buyer.nombre}</p>
           <p>Teléfono: {orderDetails?.buyer.telefono}</p>
           <p>Email: {orderDetails?.buyer.email}</p>
         </div>
       ) : (
-        <div className="checkout-form-container">
+        <div className="checkout-container">
+          {/* Respetamos la estética anterior */}
           <div className="checkout-summary">
             <h3>Resumen de tu compra</h3>
             <ul>

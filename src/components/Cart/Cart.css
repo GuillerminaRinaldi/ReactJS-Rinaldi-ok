@@ -1,24 +1,32 @@
 .cart-item {
-    display: flex;
-    flex-direction: column;  
-    gap: 10px;
     padding: 20px;
-    background-color: #fff;  
-    border: 1px solid #ccc;  
-    border-radius: 10px;  
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
-    margin-bottom: 20px;  
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   
-
+  .cart-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .cart-item p {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
+  
   .quantity-control {
     display: flex;
-    align-items: center;
     gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
   }
   
   .quantity-control button {
-    padding: 5px 10px;
+    padding: 10px;
+    font-size: 1.2rem;
     background-color: #007bff;
     color: white;
     border: none;
@@ -30,40 +38,33 @@
     background-color: #0056b3;
   }
   
-  .remove-item {
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 5px;
-    border-radius: 5px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: red;
-    align-self: flex-end;  
-  }
-  
-  .remove-item:hover {
-    background-color: #f0f0f0;
-    color: darkred;
-  }
-  
   .total-container {
-    display: flex;
-    justify-content: flex-end;
-    padding: 20px 0;
+    margin-top: 20px;
+    text-align: right;
   }
   
-  .total-button {
-    padding: 10px 20px;
+  .total-text {
+    font-size: 1.8rem;
+    color: #333;
+  }
+  
+  .checkout-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .checkout-button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
     background-color: #28a745;
     color: white;
-    font-size: 1.2rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease-in-out;
   }
   
-  .total-button:hover {
+  .checkout-button:hover {
     background-color: #218838;
   }
   

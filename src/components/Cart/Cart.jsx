@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import './Cart.css'; 
 
 const Cart = ({ cartItems, setCartItems }) => {
   const totalPrice = cartItems.reduce((total, item) => total + (item.precio * item.quantity), 0);
@@ -49,9 +50,9 @@ const Cart = ({ cartItems, setCartItems }) => {
           </ul>
 
           <div className="total-container">
-            <button className="total-button">
-              Total: ${totalPrice.toFixed(2)}
-            </button>
+            <p className="total-text">
+              <strong>Total: ${totalPrice.toFixed(2)}</strong>
+            </p>
           </div>
 
           <div className="checkout-container">
