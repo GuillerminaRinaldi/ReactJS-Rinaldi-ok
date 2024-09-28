@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const Cart = ({ cartItems, setCartItems }) => {
   const totalPrice = cartItems.reduce((total, item) => total + (item.precio * item.quantity), 0);
 
@@ -50,6 +52,12 @@ const Cart = ({ cartItems, setCartItems }) => {
             <button className="total-button">
               Total: ${totalPrice.toFixed(2)}
             </button>
+          </div>
+
+          <div className="checkout-container">
+            <Link to="/checkout">
+              <button className="checkout-button">Check Out</button>
+            </Link>
           </div>
         </div>
       )}

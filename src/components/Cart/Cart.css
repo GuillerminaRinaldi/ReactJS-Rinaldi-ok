@@ -1,20 +1,4 @@
-.remove-item {
-    background-color: white;  
-    border: 1px solid #ccc;  
-    padding: 5px;
-    border-radius: 5px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: red;
-    margin-left: 20px;
-  }
-  
-  .remove-item:hover {
-    background-color: #f0f0f0;  
-    color: darkred;
-  }
-
-  .cart-item {
+.cart-item {
     display: flex;
     flex-direction: column;  
     gap: 10px;
@@ -23,9 +7,10 @@
     border: 1px solid #ccc;  
     border-radius: 10px;  
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
-    margin-bottom: 20px;
+    margin-bottom: 20px;  
   }
   
+
   .quantity-control {
     display: flex;
     align-items: center;
@@ -58,6 +43,7 @@
   
   .remove-item:hover {
     background-color: #f0f0f0;
+    color: darkred;
   }
   
   .total-container {
@@ -80,5 +66,4 @@
   .total-button:hover {
     background-color: #218838;
   }
-  
   

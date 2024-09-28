@@ -4,6 +4,7 @@ import NavBar from './components/NavBar/NavBar';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import Cart from './components/Cart/Cart';
+import CheckOut from './components/CheckOut/CheckOut';  
 
 function App() {
   const [cartItems, setCartItems] = useState([]);  
@@ -29,6 +30,8 @@ function App() {
         <Route path="/category/:category" element={<ItemListContainer />} />
         <Route path="/product/:id" element={<ItemDetailContainer addItemToCart={addItemToCart} />} />
         <Route path="/cart" element={<Cart cartItems={cartItems} setCartItems={setCartItems} />} />
+        
+        <Route path="/checkout" element={<CheckOut cartItems={cartItems} />} />  
       </Routes>
     </div>
   );

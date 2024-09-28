@@ -1,4 +1,4 @@
-import { collection, getDocs, getDoc, doc } from 'firebase/firestore';
+import { collection, getDocs, getDoc, doc, addDoc } from 'firebase/firestore';
 import { db } from './config';
 
 export const getProducts = async () => {
@@ -19,5 +19,15 @@ export const getProductById = async (id) => {
   } else {
     console.error("El producto no existe");
     return null;
+  }
+};
+
+export const createOrder = async (order) => {
+  try {
+    const docRef = await addDoc(collection(db, "orders"), order);
+    console.log("Document written with ID: ", docRef.id);
+    return docRef;  
+  } catch (e) {
+    console.error("Error adding document: ", e);
   }
 };
