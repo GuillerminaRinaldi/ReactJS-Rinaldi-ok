@@ -1,6 +1,6 @@
 .navbar {
   display: flex;
-  justify-content: space-between; /* Espacia los elementos a los extremos */
+  justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
   background-color: hsl(195, 56%, 29%);
@@ -9,12 +9,20 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.logo-container {
+  flex: 0 1 auto;
+}
+
+.logo {
+  font-size: 2rem; 
+}
+
 .nav-links {
-  list-style: none;
   display: flex;
+  justify-content: center;  
   gap: 40px;
-  padding: 0;
-  margin: 0;
+  flex: 1;
+  list-style: none;
 }
 
 .nav-links li {
@@ -34,11 +42,12 @@
 }
 
 .cart-widget-container {
-  margin-left: auto; /* Mueve el carrito a la derecha */
+  flex: 0 1 auto;
 }
 
 .cart-widget {
   font-size: 1.2rem;
+  color: white;
   cursor: pointer;
   transition: transform 0.3s;
 }
@@ -47,14 +56,19 @@
   transform: scale(1.1);
 }
 
+.cart-widget-number {
+  font-size: 1.1rem;
+  color: white;
+  margin-left: 5px;
+}
+
 .dropdown-content {
-  display: none;
+  display: none; 
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
   z-index: 1;
-  text-align: center;
 }
 
 .dropdown-content a {
@@ -65,7 +79,7 @@
 }
 
 .dropdown:hover .dropdown-content {
-  display: block;
+  display: block; 
 }
 
 .dropdown-content a:hover {

@@ -7,6 +7,7 @@
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative; 
 }
 
 .product-detail img {
@@ -54,4 +55,24 @@
 
 .add-to-cart:hover {
   background-color: #218838;
+}
+
+.back-home {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.back-home a {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.back-home a:hover {
+  background-color: #0056b3;
 }

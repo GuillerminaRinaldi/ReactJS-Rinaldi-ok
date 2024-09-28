@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { getProductById } from '../../firebase/database';
 import './ItemDetailContainer.css';
 
@@ -22,7 +22,7 @@ const ItemDetailContainer = ({ addItemToCart }) => {
   }, [id]);
 
   const handleAddToCart = () => {
-    addItemToCart(product, quantity);  
+    addItemToCart(product, quantity);
   };
 
   const increaseQuantity = () => setQuantity(quantity + 1);
@@ -34,20 +34,27 @@ const ItemDetailContainer = ({ addItemToCart }) => {
 
   return (
     <div className="product-detail">
+      <div className="back-home">
+        <Link to="/">
+          🏠 Volver al Home
+        </Link>
+      </div>
+
       <img src={product.imagen} alt={product.nombre} />
       <h2>{product.nombre}</h2>
       <p>Autor: {product.author}</p>
       <p>Género: {product.genre}</p>
       <p>Precio: ${product.precio}</p>
+
       <div className="quantity-control">
         <button onClick={decreaseQuantity}>-</button>
         <span>{quantity}</span>
         <button onClick={increaseQuantity}>+</button>
       </div>
+
       <button className="add-to-cart" onClick={handleAddToCart}>Agregar al carrito</button>
     </div>
   );
 };
 
 export default ItemDetailContainer;
-

@@ -5,6 +5,10 @@ import './NavBar.css';
 const NavBar = ({ totalItemsInCart }) => {
   return (
     <nav className="navbar">
+      <div className="logo-container">
+        <span className="logo">📚</span> 
+      </div>
+
       <ul className="nav-links">
         <li><Link to="/">Todos los productos</Link></li>
 
