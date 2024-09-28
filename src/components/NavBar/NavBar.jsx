@@ -6,7 +6,7 @@ const NavBar = ({ totalItemsInCart }) => {
   return (
     <nav className="navbar">
       <div className="logo-container">
-        <span className="logo">📚</span> 
+        <span className="logo">📚</span>
       </div>
 
       <ul className="nav-links">
@@ -30,7 +30,6 @@ const NavBar = ({ totalItemsInCart }) => {
             <Link to="/category/genre/Filosofía">Filosofía</Link>
             <Link to="/category/genre/Ficción contemporánea">Ficción contemporánea</Link>
             <Link to="/category/genre/Romance">Romance</Link>
-            <Link to="/category/genre/Misterio">Misterio</Link>
             <Link to="/category/genre/Realismo mágico">Realismo mágico</Link>
           </div>
         </li>

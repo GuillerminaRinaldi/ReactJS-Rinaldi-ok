@@ -27,10 +27,9 @@ function App() {
       <NavBar totalItemsInCart={totalItemsInCart} />
       <Routes>
         <Route path="/" element={<ItemListContainer />} />
-        <Route path="/category/:category" element={<ItemListContainer />} />
+        <Route path="/category/:category/:value" element={<ItemListContainer />} /> {/* Filtro por categoría */}
         <Route path="/product/:id" element={<ItemDetailContainer addItemToCart={addItemToCart} />} />
         <Route path="/cart" element={<Cart cartItems={cartItems} setCartItems={setCartItems} />} />
-        
         <Route path="/checkout" element={<CheckOut cartItems={cartItems} />} />  
       </Routes>
     </div>
