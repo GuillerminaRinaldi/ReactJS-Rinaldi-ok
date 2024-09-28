@@ -8,7 +8,7 @@ import { CartProvider } from './context/CartContext';
 
 function App() {
   return (
-    <CartProvider> 
+    <CartProvider>
       <NavBar />
       <Routes>
         <Route path="/" element={<ItemListContainer />} />

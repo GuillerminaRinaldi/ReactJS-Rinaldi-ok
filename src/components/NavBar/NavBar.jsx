@@ -2,13 +2,12 @@ import { Link } from 'react-router-dom';
 import CartWidget from '../CartWidget/CartWidget';
 import './NavBar.css';
 
-const NavBar = ({ totalItemsInCart }) => {
+const NavBar = () => {
   return (
     <nav className="navbar">
-      <div className="logo-container">
-        <span className="logo">📚</span>
+      <div className="logo">
+        📚 
       </div>
-
       <ul className="nav-links">
         <li><Link to="/">Todos los productos</Link></li>
 
@@ -36,7 +35,7 @@ const NavBar = ({ totalItemsInCart }) => {
       </ul>
 
       <div className="cart-widget-container">
-        <CartWidget totalItemsInCart={totalItemsInCart} />
+        <CartWidget />
       </div>
     </nav>
   );
