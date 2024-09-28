@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getProductById } from '../../firebase/database';
+import { useCart } from '../../context/CartContext';
 import './ItemDetailContainer.css';
 
-const ItemDetailContainer = ({ addItemToCart }) => {
+const ItemDetailContainer = () => {
   const { id } = useParams();
+  const { addItemToCart } = useCart(); 
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [showItemCount, setShowItemCount] = useState(true); 
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -22,7 +25,8 @@ const ItemDetailContainer = ({ addItemToCart }) => {
   }, [id]);
 
   const handleAddToCart = () => {
-    addItemToCart(product, quantity);
+    addItemToCart(product, quantity); 
+    setShowItemCount(false); 
   };
 
   const increaseQuantity = () => setQuantity(quantity + 1);
@@ -35,9 +39,7 @@ const ItemDetailContainer = ({ addItemToCart }) => {
   return (
     <div className="product-detail">
       <div className="back-home">
-        <Link to="/">
-          🏠 Volver al Home
-        </Link>
+        <Link to="/">🏠 Volver al Home</Link>
       </div>
 
       <img src={product.imagen} alt={product.nombre} />
@@ -46,13 +48,14 @@ const ItemDetailContainer = ({ addItemToCart }) => {
       <p>Género: {product.genre}</p>
       <p>Precio: ${product.precio}</p>
 
-      <div className="quantity-control">
-        <button onClick={decreaseQuantity}>-</button>
-        <span>{quantity}</span>
-        <button onClick={increaseQuantity}>+</button>
-      </div>
-
-      <button className="add-to-cart" onClick={handleAddToCart}>Agregar al carrito</button>
+      {showItemCount && (
+        <div className="quantity-control">
+          <button onClick={decreaseQuantity}>-</button>
+          <span>{quantity}</span>
+          <button onClick={increaseQuantity}>+</button>
+          <button className="add-to-cart" onClick={handleAddToCart}>Agregar al carrito</button>
+        </div>
+      )}
     </div>
   );
 };
