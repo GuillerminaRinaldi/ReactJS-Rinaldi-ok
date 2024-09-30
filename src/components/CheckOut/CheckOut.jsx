@@ -1,8 +1,10 @@
 import './CheckOut.css';
 import { useState } from 'react';
+import { useCart } from '../../context/CartContext'; 
 import { createOrder } from '../../firebase/database';  
 
-const CheckOut = ({ cartItems, setCartItems }) => {
+const CheckOut = () => {
+  const { cartItems, clearCart } = useCart(); 
   const [formData, setFormData] = useState({
     nombre: '',
     telefono: '',
@@ -48,7 +50,7 @@ const CheckOut = ({ cartItems, setCartItems }) => {
       const docRef = await createOrder(order);
       setOrderId(docRef.id);
       setOrderDetails(order);
-      setCartItems([]);
+      clearCart(); 
     } catch (error) {
       console.error("Error al crear la orden:", error);
     }
@@ -77,8 +79,7 @@ const CheckOut = ({ cartItems, setCartItems }) => {
           <p>Email: {orderDetails?.buyer.email}</p>
         </div>
       ) : (
-        <div className="checkout-container">
-          {/* Respetamos la estética anterior */}
+        <div className="checkout-content">
           <div className="checkout-summary">
             <h3>Resumen de tu compra</h3>
             <ul>
