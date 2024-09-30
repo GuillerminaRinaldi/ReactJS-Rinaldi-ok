@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import CartWidget from '../CartWidget/CartWidget';
+import { useCart } from '../../context/CartContext'; 
 import './NavBar.css';
 
 const NavBar = () => {
+  const { totalItemsInCart } = useCart(); 
+
   return (
     <nav className="navbar">
       <div className="logo">
@@ -35,7 +38,7 @@ const NavBar = () => {
       </ul>
 
       <div className="cart-widget-container">
-        <CartWidget />
+        <CartWidget totalItemsInCart={totalItemsInCart()} /> 
       </div>
     </nav>
   );

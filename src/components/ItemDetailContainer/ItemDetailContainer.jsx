@@ -24,13 +24,16 @@ const ItemDetailContainer = () => {
     fetchProduct();
   }, [id]);
 
-  const handleAddToCart = () => {
-    addItemToCart(product, quantity); 
-    setShowItemCount(false); 
+  const handleQuantityChange = (change) => {
+    setQuantity((prevQuantity) => Math.max(1, prevQuantity + change));
   };
 
-  const increaseQuantity = () => setQuantity(quantity + 1);
-  const decreaseQuantity = () => quantity > 1 && setQuantity(quantity - 1);
+  const handleAddToCart = () => {
+    if (product && quantity > 0) {
+      addItemToCart(product, quantity);
+      setShowItemCount(false); 
+    }
+  };
 
   if (!product) {
     return <p>Cargando detalles del producto...</p>;
@@ -48,13 +51,17 @@ const ItemDetailContainer = () => {
       <p>Género: {product.genre}</p>
       <p>Precio: ${product.precio}</p>
 
-      {showItemCount && (
+      {showItemCount ? (
         <div className="quantity-control">
-          <button onClick={decreaseQuantity}>-</button>
+          <button onClick={() => handleQuantityChange(-1)}>-</button>
           <span>{quantity}</span>
-          <button onClick={increaseQuantity}>+</button>
-          <button className="add-to-cart" onClick={handleAddToCart}>Agregar al carrito</button>
+          <button onClick={() => handleQuantityChange(1)}>+</button>
+          <button className="add-to-cart" onClick={handleAddToCart}>
+            Agregar al carrito
+          </button>
         </div>
+      ) : (
+        <p>Producto agregado al carrito</p>
       )}
     </div>
   );
